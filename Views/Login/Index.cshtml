@@ -1,0 +1,33 @@
+﻿
+    @*<form class="modal-content" action="/action_page.php">*@
+<div class="container">
+    <fieldset>
+        <legend>Login</legend>
+        <h1>Login</h1>
+
+        <hr>
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+
+
+        <div class="clearfix">
+
+
+            <a class="nav-link text-dark cancelbtn" asp-area="" asp-controller="Login" asp-action="Registration">Register</a>
+            @*<button type="button" onclick="document.getElementById('id01').style.display='block'" class="cancelbtn">Register</button>*@
+            @*<button type="submit" class="signupbtn">Login</button>*@
+            <a class="nav-link text-dark signupbtn" style="cursor:pointer;">Login</a>
+        </div>
+        </fieldset>
+</div>
+    @*</form>*@
+

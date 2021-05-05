@@ -1,38 +1,29 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ProjectECommerce.Models;
-using ProjectECommerce.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.Models;
 
-namespace ProjectECommerce.Controllers
+namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ECommerceContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ECommerceContext context, IWebHostEnvironment webHostEnvironment)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _context = context;
-            _webHostEnvironment = webHostEnvironment;
+            _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            IEnumerable<Product> productList = _context.Products.ToList();
-            return View(productList);
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Home()
         {
             return View();
         }
+
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
