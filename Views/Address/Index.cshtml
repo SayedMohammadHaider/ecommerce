@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ProjectECommerce.Models.DB.Address>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Address List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp; Add New Address
+            </a>
+        </div>
+    </div>
+    <br /><br />
+    <form method="get">
+        <div class="row">
+            <div class="col-4 input-group">
+                <input class="form-control" name="searching" placeholder="Search Address" />
+                <div class="input-group-append">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Get All Address" class="btn btn-info" />
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>Full Address</th>
+                    <th>Pin Code</th>
+                    <th>Landmark</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var address in Model)
+                {
+                    <tr>
+                        <td width="15%">@address.Name</td>
+                        <td width="10%">@address.Email</td>
+                        <td width="10%">@address.Mobile</td>
+                        <td width="20%">@address.AddressLine1 @address.AddressLine2 @address.Area @address.City  @address.Country</td>
+                        <td width="10%">@address.Pincode</td>
+                        <td width="20%">@address.Landmark</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-route-Id="@address.Id" asp-action="Edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary mx-1">Edit </a>
+                                <a asp-route-Id="@address.Id" asp-action="Delete" data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger mx-1">Delete </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <h2>No Address Found</h2>
+    }
+
+</div>
