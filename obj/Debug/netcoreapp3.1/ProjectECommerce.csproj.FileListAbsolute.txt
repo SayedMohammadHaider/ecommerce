@@ -388,3 +388,13 @@ C:\Haider\Rizwan\ProjectECommerce\ProjectECommerce\obj\Debug\netcoreapp3.1\Proje
 C:\Haider\Rizwan\ProjectECommerce\ProjectECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.genruntimeconfig.cache
 C:\Haider\Rizwan\ProjectECommerce\ProjectECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.csprojAssemblyReference.cache
 C:\Haider\Rizwan\ProjectECommerce\ProjectECommerce\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.csprojAssemblyReference.cache
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.AssemblyInfoInputs.cache
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.AssemblyInfo.cs
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.csproj.CoreCompileInputs.cache
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.MvcApplicationPartsAssemblyInfo.cs
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.MvcApplicationPartsAssemblyInfo.cache
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.RazorAssemblyInfo.cache
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.RazorAssemblyInfo.cs
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.dll
+D:\RizwanOffice-Work-AWC\ECommerce\obj\Debug\netcoreapp3.1\ProjectECommerce.pdb
