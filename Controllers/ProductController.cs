@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectECommerce.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,18 @@ namespace WebApplication1.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Product()
+
+        private readonly ECommerceContext _context;
+
+        public ProductController(ECommerceContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            IEnumerable<Product> prodList = _context.Products;
+            return View(prodList);
         }
 
 

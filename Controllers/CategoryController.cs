@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
 {
     public class CategoryController : Controller
     {
-        public IActionResult Category()
+        public IActionResult Index()
         {
             return View();
         }
