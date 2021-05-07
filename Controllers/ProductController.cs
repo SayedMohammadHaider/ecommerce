@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectECommerce.Models;
 using ProjectECommerce.Models.DB;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
+
     public class ProductController : Controller
     {
 
@@ -17,17 +19,41 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string name)
         {
-            IEnumerable<Product> prodList = _context.Products;
-            return View(prodList);
+            ProductViewModel productView = new ProductViewModel();
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+            {
+                productView.Products = _context.Products;
+                productView.CategoryName = "All Products";
+            }
+            else
+            {
+                productView.Products = _context.Products.Where(x => x.Category == name);
+                productView.CategoryName = name;
+            }
+            return View(productView);
         }
 
 
 
-        public IActionResult ProductDetails()
+        public IActionResult ProductDetails(int id, int quantity = 1, string quantityType = null)
         {
-            return View();
+            ProductDetailsViewModel viewModel = new ProductDetailsViewModel();
+            viewModel.Prooduct = _context.Products.Where(x => x.Id == id).FirstOrDefault();
+            if (quantityType == "add")
+            {
+                quantity++;
+            }
+            else if (quantityType == "sub")
+            {
+                if (quantity > 1)
+                {
+                    quantity--;
+                }
+            }
+            viewModel.Quantity = quantity;
+            return View(viewModel);
         }
     }
 }

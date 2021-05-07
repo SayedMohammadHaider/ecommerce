@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3  navbar navbar-inverse navbar-fixed-top">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Home"><img src="~/images/logo.png" asp-append-version="true"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" asp-append-version="true"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="  nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
                             <div class="dropdown-menu">
-                                <ul class="sub-category">
-                                    <li><a href="#">Man’s product</a></li>
-                                    <li><a href="#">Ladies</a></li>
-                                    <li><a href="#">Kids </a></li>
-                                </ul>
+                                @await Component.InvokeAsync("Category")
                             </div>
                         </li>
                         <li class="nav-item">
@@ -53,7 +49,7 @@
         </nav>
     </header>
 
-        <div class="container">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

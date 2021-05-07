@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectECommerce.Models;
+using ProjectECommerce.Models.DB;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace WebApplication1.Controllers
 {
@@ -9,17 +12,20 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ECommerceContext _context;
+
+        public HomeController(ECommerceContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Product> topProducts = _context.Products.Take(12);
+            return View(topProducts);
         }
 
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
