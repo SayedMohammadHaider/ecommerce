@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjectECommerce.Models;
 using ProjectECommerce.Models.DB;
@@ -10,8 +11,6 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private readonly ECommerceContext _context;
 
         public HomeController(ECommerceContext context)
@@ -25,7 +24,11 @@ namespace WebApplication1.Controllers
             return View(topProducts);
         }
 
-
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("UserId");
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

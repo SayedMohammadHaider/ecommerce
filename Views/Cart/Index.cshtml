@@ -3,81 +3,88 @@
 <link rel="stylesheet" href="~/css/reset.css">
 <link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="~/css/responsive.css">
+<link rel="stylesheet" href="~/FontAwsome/css/all.css" />
 
 <div class="shopping-cart section">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <!-- Shopping Summery -->
-                <table class="table shopping-summery">
-                    <thead>
-                        <tr class="main-hading">
-                            <th>PRODUCT</th>
-                            <th>NAME</th>
-                            <th class="text-center">PRICE</th>
-                            <th class="text-center">QUANTITY</th>
-                            <th class="text-center">TOTAL</th>
-                            <th class="text-center"><i class="ti-trash remove-icon"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var cartList in Model)
-                        {
-            <tr>
-                <td class="image" data-title="No"><img src="@cartList.Product.ImagePath" alt="#"></td>
-                <td class="product-des" data-title="Description">
-                    <p class="product-name"><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@cartList.Product.Id">@cartList.Product.Name</a></p>
-                    <p class="product-des">@cartList.Product.Description</p>
-                </td>
-                <td class="price" data-title="Price"><span>$@cartList.Product.Price </span></td>
-                <td class="qty" data-title="Qty">
-                    <!-- Input Order -->
-                    <div class="input-group">
-                        <div class="button minus">
-                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="@cartList.Quantity">
-                        <div class="button plus">
-                            <button type="submit" class="btn btn-primary btn-number" data-type="plus" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@cartList.Id" data-field="quant[1]">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!--/ End Input Order -->
-                </td>
-                <td class="total-amount" data-title="Total"><span>$@(Convert.ToInt32(cartList.Product.Price)*@Convert.ToInt32(cartList.Quantity))</span></td>
-                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-            </tr>}
-                    </tbody>
-                </table>
-                <!--/ End Shopping Summery -->
+        @if (@Model.Count() > 0)
+        {
+<div class="row">
+    <div class="col-12">
+        <!-- Shopping Summery -->
+        <table class="table shopping-summery">
+            <thead>
+                <tr class="main-hading">
+                    <th>PRODUCT</th>
+                    <th>NAME</th>
+                    <th class="text-center">PRICE</th>
+                    <th class="text-center">QUANTITY</th>
+                    <th class="text-center">TOTAL</th>
+                    <th class="text-center"><i class="fas fa-trash remove-icon"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cartList in Model)
+                {
+<tr>
+    <td class="image" data-title="No"><img src="@cartList.Product.ImagePath" alt="#"></td>
+    <td class="product-des" data-title="Description">
+        <p class="product-name"><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@cartList.Product.Id">@cartList.Product.Name</a></p>
+        <p class="product-des">@cartList.Product.Description</p>
+    </td>
+    <td class="price" data-title="Price"><span>$@cartList.Product.Price </span></td>
+    <td class="qty" data-title="Qty">
+        <!-- Input Order -->
+        <div class="input-group">
+            <div class="button minus">
+                <a asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="-1" class="btn btn-primary btn-number" data-type="minus">
+                    <i class="fas fa-minus"></i>
+                </a>
+            </div>
+            <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="@cartList.Quantity">
+            <div class="button plus">
+                <a class="btn btn-primary btn-number" data-type="plus" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="1">
+                    <i class="fas fa-plus"></i>
+                </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- Total Amount -->
-                <div class="total-amount">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-5 col-12">
-                        </div>
-                        <div class="col-lg-4 col-md-7 col-12">
-                            <div class="right">
-                                <ul>
-                                    <li>Cart Subtotal<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
-                                    <li>Shipping<span>Free</span></li>
-                                    <li class="last">Total Pay<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
-                                </ul>
-                                <div class="button5">
-                                    <a href="#" class="btn">Checkout</a>
+        <!--/ End Input Order -->
+    </td>
+    <td class="total-amount" data-title="Total"><span>$@(Convert.ToInt32(cartList.Product.Price)*@Convert.ToInt32(cartList.Quantity))</span></td>
+    <td class="action" data-title="Remove"><a asp-action="DeleteItemFromCart" asp-route-id="@cartList.Id"><i class="fas fa-trash"></i></a></td>
+</tr>
+}
+            </tbody>
+        </table>
+        <!--/ End Shopping Summery -->
+    </div>
+</div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Total Amount -->
+                        <div class="total-amount">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-5 col-12">
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-12">
+                                    <div class="right">
+                                        <ul>
+                                            <li>Cart Subtotal<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
+                                            <li>Shipping<span>Free</span></li>
+                                            <li class="last">Total Pay<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
+                                        </ul>
+                                        <div class="button5">
+                                            <a href="#" class="btn">Checkout</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!--/ End Total Amount -->
                     </div>
-                </div>
-                <!--/ End Total Amount -->
-            </div>
+                </div>}
+        <div class="row" style="margin-left:20px">
+            <h3>No item found in your cart.</h3>
         </div>
     </div>
 </div>
