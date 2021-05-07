@@ -8141,10 +8141,11 @@ body {
   color: gray; }
 
 a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease;
-  color: #a0c334; }
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    color: #F7941D;
+}
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8191,17 +8192,18 @@ h1, h2, h3, h4, h5,
 
 .form-group {
   position: relative; }
-  .form-group .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 48px;
-    height: 48px;
-    background: #a0c334;
-    font-size: 20px;
-    border-radius: 5px 0 0 5px; }
+    .form-group .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 48px;
+        height: 48px;
+        background: #F7941D !important;
+        font-size: 20px;
+        border-radius: 5px 0 0 5px;
+    }
     .form-group .icon span {
       color: #fff; }
 
@@ -8236,7 +8238,8 @@ h1, h2, h3, h4, h5,
     .social-media .social-icon span {
       color: #999999; }
     .social-media .social-icon:hover, .social-media .social-icon:focus {
-      background: #a0c334; }
+        background: #F7941D;
+    }
       .social-media .social-icon:hover span, .social-media .social-icon:focus span {
         color: #fff; }
 
@@ -8305,10 +8308,11 @@ h1, h2, h3, h4, h5,
   padding: 10px 20px; }
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
-  .btn.btn-primary {
-    background: #a0c334 !important;
-    border: 1px solid #a0c334 !important;
-    color: #fff !important; }
+    .btn.btn-primary {
+        background: #F7941D !important;
+        border: 1px solid #F7941D !important;
+        color: #fff !important;
+    }
     .btn.btn-primary:hover {
       border: 1px solid #a0c334;
       background: transparent;
