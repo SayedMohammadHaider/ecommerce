@@ -1,0 +1,96 @@
+﻿@model ProjectECommerce.Models.DB.Order
+<link rel="stylesheet" href="~/css/bootstrap.css">
+<link rel="stylesheet" href="~/css/reset.css">
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/responsive.css">
+<link rel="stylesheet" href="~/FontAwsome/css/all.css" />
+
+<div class="container">
+    @*<div class="well" style="background-color: #F7941D; border-color: #F7941D;border-radius:4px;padding:19px 19px 2px 19px">
+            <div class="row">
+                <div class="col-6">
+                    <p style="color: black !important;font-size:20px">Order Created Successfully</p>
+                </div>
+            </div>
+        </div>*@
+
+    <h1>Your Order Created Successfully.</h1>
+    <div class="shopping-cart section">
+
+        <div class="container">
+            @if (@Model.OrderDetails.Count() > 0)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Shopping Summery -->
+                        <table class="table shopping-summery">
+                            <thead>
+                                <tr class="main-hading">
+                                    <th>PRODUCT</th>
+                                    <th>NAME</th>
+                                    <th class="text-center">PRICE</th>
+                                    <th class="text-center">QUANTITY</th>
+                                    <th class="text-center">TOTAL</th>
+                                    @*<th class="text-center"><i class="fas fa-trash remove-icon"></i></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var orderDetails in Model.OrderDetails)
+                                {
+                                    <tr>
+                                        <td class="image" data-title="No"><img src="@orderDetails.Product.ImagePath" alt="#"></td>
+                                        <td class="product-des" data-title="Description">
+                                            <p class="product-name"><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@orderDetails.Product.Id">@orderDetails.Product.Name</a></p>
+                                            <p class="product-des">@orderDetails.Product.Description</p>
+                                        </td>
+                                        <td class="price" data-title="Price"><span>$@orderDetails.Price </span></td>
+                                        <td class="qty" data-title="Qty">
+                                            <!-- Input Order -->
+                                            <div class="input-group">
+
+                                                <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="@orderDetails.Quantity">
+
+                                            </div>
+                                            <!--/ End Input Order -->
+                                        </td>
+                                        <td class="total-amount" data-title="Total"><span>$@(Convert.ToInt32(orderDetails.Price)*@Convert.ToInt32(orderDetails.Quantity))</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <!--/ End Shopping Summery -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Total Amount -->
+                        <div class="total-amount">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-5 col-12">
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-12">
+                                    <div class="right">
+                                        <ul>
+                                            <li>Total<span>$@Model.OrderDetails.Sum(x => Convert.ToInt32(x.Price) * Convert.ToInt32(x.Quantity))</span></li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Total Amount -->
+                    </div>
+                </div>}
+            else
+            {
+                <div class="row" style="margin-left:20px">
+                    <h3>Order Detail Not Found.</h3>
+                </div>}
+
+        </div>
+    </div>
+
+
+
+</div>

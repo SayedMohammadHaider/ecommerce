@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectECommerce.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,18 @@ namespace WebApplication1.Controllers
 {
     public class UserProfileController : Controller
     {
-        public IActionResult UserProfile()
+        private readonly ECommerceContext _context;
+
+        public UserProfileController(ECommerceContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            int userId = Convert.ToInt32(Request.Cookies["UserId"]);
+            var userDetails = _context.Users.Where(x => x.Id == userId).FirstOrDefault();
+            return View(userDetails);
         }
     }
 }
