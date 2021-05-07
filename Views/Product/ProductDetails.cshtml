@@ -1,79 +1,91 @@
-﻿<h1>Product Details</h1>
+﻿@model ProjectECommerce.Models.ProductDetailsViewModel
+
+
 <link rel=" stylesheet" href="~/css/productdetails.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<div class="container" style="margin-top:80px">
+    <div class="well" style="font-size:20px">Product Details</div>
+    <section>
+        <div class="productDetailspanel">
+            <div class="productImagepanel">
+                <img src="@Model.Prooduct.ImagePath" />
+            </div>
+            <div class="productSpecpanel">
+                <h1>Details</h1>
+                <div class="productSpecifications">
 
-<section>
-    <div class="productDetailspanel">
-        <div class="productImagepanel">
-            <img src="~/images/products/g1.jpg" />
-        </div>
-        <div class="productSpecpanel">
-            <h1>Details</h1>
-            <div class="productSpecifications">
-
-                <ul class="detailsPanel">
-                    <li class="oddPanel">
-                        <Label>Title</Label>
-                        <p>
-                            <span>ABC</span>
-                        </p>
-                    </li>
-                    <li class="">
-                        <Label>Description</Label>
-                        <p>
-                            <span>ABC</span>
-                        </p>
-                    </li>
-                    <li class="oddPanel">
-                        <Label>Price</Label>
-                        <p>
-                            <span>ABC</span>
-                        </p>
-                    </li>
-                    <li class="oddPanel">
-                        <Label>Category</Label>
-                        <p>
-                            <span>ABC</span>
-                        </p>
-                    </li>
-                </ul>
+                    <ul class="detailsPanel">
+                        <li class="oddPanel">
+                            <Label>Title</Label>
+                            <p>
+                                <span>@Model.Prooduct.Name</span>
+                            </p>
+                        </li>
+                        <li class="">
+                            <Label>Description</Label>
+                            <p>
+                                <span>@Model.Prooduct.Description</span>
+                            </p>
+                        </li>
+                        <li class="oddPanel">
+                            <Label>Price</Label>
+                            <p>
+                                <span>@Model.Prooduct.Price</span>
+                            </p>
+                        </li>
+                        <li class="oddPanel">
+                            <Label>Category</Label>
+                            <p>
+                                <span>@Model.Prooduct.Category</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-    <div class="productcartPanel">
-        <div class="addcartItem">
-            <a style={{ cursor: "pointer" }}
-              
-                class="addcartItemsignpminus"
-                >
-                -
-            </a>
-            <div class="addCartnumber">
-                <span>2</span>
+        <div class="productcartPanel">
+            <div class="addcartItem">
+                <a asp-action="ProductDetails" asp-route-id="@Model.Prooduct.Id" asp-route-quantity="@Model.Quantity" asp-route-quantityType="sub">
+                    <span style="cursor:pointer" onclick="manageQuantity(false)"
+                          class="addcartItemsignpminus">
+                        -
+                    </span>
+                </a>
+                <div class="addCartnumber">
+                    <span>@Model.Quantity</span>
+                </div>
+                <a asp-action="ProductDetails" asp-route-id="@Model.Prooduct.Id" asp-route-quantity="@Model.Quantity" asp-route-quantityType="add">
+                    <span style="cursor:pointer"
+                          class="addcartItemsignpplus">
+                        +
+                    </span>
+                </a>
             </div>
-            <a style={{ cursor: "pointer" }}
-               
-                
-                class="addcartItemsignpplus"
-                >
-                +
-            </a>
+            <div>
+                <a class="addtocart" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@Model.Prooduct.Id" asp-route-quantity="@Model.Quantity">
+                    Add to Cart
+                </a>
+            </div>
         </div>
-        <div>
-            <a class="addtocart"
-                  onClick={this._onAddToCartClick}
-            <span>
-                @*<IconButton iconProps={{ iconName: "ShoppingCartSolid" }} />*@
-            </span>
-            Add to Cart
-            </a>
-        </div>
-    </div>
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //function manageQuantity(isAdd) {
+    //    var currentQuantity = parseInt(document.getElementById('number').innerHTML);
+    //    if (isAdd) {
+    //        $("#number").text(currentQuantity + 1);
+    //    }
+    //    else {
+    //        if (currentQuantity > 1) {
+    //            $("#number").text(currentQuantity - 1);
+    //        }
+    //    }
+    //}
+    //function callFunction() {
+    //    alert("hi");
+    //    $.get("/Cart/ManageQuantity/1/1");
+    //}
+</script>
 
-</section>

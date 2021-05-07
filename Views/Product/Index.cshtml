@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectECommerce.Models.DB.Product>
+﻿
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
@@ -30,25 +30,26 @@
 <link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="~/css/responsive.css">
 
+<div class="well" style="font-size:20px">@Model.CategoryName</div>
 
-@foreach (var productList in Model)
+@foreach (var productList in Model.Products)
 {
     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
         <div class="single-product">
-            <div class="product-img">
-                <a asp-action="ProductDetails">
+            <div class="product-img" style="min-height:300px;min-width:250px;max-height:300px;max-width:250px">
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productList.Id">
                     <img class="default-img" src="@productList.ImagePath" alt="#">
                     <img class="hover-img" src="@productList.ImagePath" alt="#">
                 </a>
                 <div class="button-head">
 
                     <div class="product-action-2">
-                        <a title="Add to cart" href="#">Add to cart</a>
+                        <a title="Add to cart"  asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@productList.Id" asp-route-quantity="1">Add to cart</a>
                     </div>
                 </div>
             </div>
             <div class="product-content">
-                <h3><a href="product-details.html">@productList.Name</a></h3>
+                <h3><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productList.Id">@productList.Name</a></h3>
                 <div class="product-price">
                     <span>ر.ع.@productList.Price</span>
                 </div>

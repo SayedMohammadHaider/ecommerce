@@ -22,10 +22,24 @@ namespace ProjectECommerce.Controllers
             return View(cartList);
         }
 
-        public IActionResult ManageQuantity(int id)
+        public IActionResult ManageQuantity(int id, int quantity)
         {
-            var list = _context.Carts.Where(x => x.Id == id);
-            return View();
+            Cart addDataToCart = new Cart();
+           var cartDetails = _context.Carts.Where(x => x.ProductId == id && x.UserId == 1).FirstOrDefault();
+            if (cartDetails != null)
+            {
+                cartDetails.Quantity = (Convert.ToInt32(cartDetails.Quantity) + quantity).ToString();
+                _context.Carts.Update(cartDetails);
+            }
+            else
+            {
+                addDataToCart.ProductId = id;
+                addDataToCart.Quantity = quantity.ToString();
+                addDataToCart.UserId = 1;
+                _context.Carts.Add(addDataToCart);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

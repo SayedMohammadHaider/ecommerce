@@ -1,6 +1,4 @@
-﻿
-
-
+﻿@model IEnumerable<ProjectECommerce.Models.DB.Product>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,8 +19,6 @@
                     <div class="item active">
                         <img src="~/images/c.jpeg" class="img-responsive w-100%">
                         <div class="carousel-caption">
-                            @*<h3></h3>
-                                <p style="font-weight: bold; color:yellow;font-size:small"></p>*@
                         </div>
 
                     </div>
@@ -55,8 +51,7 @@
     <section class="small-banner section">
         <div class="container-fluid">
             <div class="row">
-                <!-- Single Banner  -->
-                @*<div class="col-lg-4 col-md-6 col-12">*@
+
                 <div class="col-sm-4">
                     <div class="single-banner">
                         <img src="~/images/55.jpg" alt="#" class="img-responsive">
@@ -67,8 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /End Single Banner  -->
-                <!-- Single Banner  -->
+
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="single-banner">
                         <img src="~/images/new1.jpg" alt="#" class="img-responsive">
@@ -79,8 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /End Single Banner  -->
-                <!-- Single Banner  -->
+
                 <div class="col-lg-4 col-12">
                     <div class="single-banner tab-height">
                         <img src="~/images/new2.jpg" alt="#" class="img-responsive">
@@ -95,8 +88,7 @@
             </div>
         </div>
     </section>
-    <!-- End Small Banner -->
-    <!-- Start Product Area -->
+
     <div class="product-area section">
         <div class="container">
             <div class="row">
@@ -115,264 +107,32 @@
                             <div class="tab-pane fade show active" id="man" role="tabpanel">
                                 <div class="tab-single">
                                     <div class="row">
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/g1.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/g1.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
 
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
+                                        @foreach (var productDetails in Model)
+                                        {
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                <div class="single-product">
+                                                    <div class="product-img" style="min-height:300px;min-width:250px;max-height:300px;max-width:250px">
+                                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">
+                                                            <img class="default-img" src="@productDetails.ImagePath" alt="#">
+                                                            <img class="hover-img" src="@productDetails.ImagePath" alt="#">
+                                                        </a>
+                                                        <div class="button-head">
+
+                                                            <div class="product-action-2">
+                                                                <a title="Add to cart" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@productDetails.Id" asp-route-quantity="1">Add to cart</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">@productDetails.Name</a></h3>
+                                                        <div class="product-price">
+                                                            <span>@productDetails.Price ر.ع.</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-content">
-
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/g10.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/g10.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/g11.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/g11.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/g12.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/g12.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/n1.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/n1.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/n10.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/n10.jpg" alt="#">
-
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/n14.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/n14.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/n2.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/n2.jpg" alt="#">
-
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-
-                                                        <span>ر.ع.50.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/k2.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/k2.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/k3.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/k3.jpg" alt="#">
-
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/k5.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/k5.jpg" alt="#">
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.29.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <div class="single-product">
-                                                <div class="product-img">
-                                                    <a href="product-details.html">
-                                                        <img class="default-img" src="~/images/products/k9.jpg" alt="#">
-                                                        <img class="hover-img" src="~/images/products/k9.jpg" alt="#">
-
-                                                    </a>
-                                                    <div class="button-head">
-
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-content">
-                                                    <div class="product-price">
-                                                        <span>ر.ع.50.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
