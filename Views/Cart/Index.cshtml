@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProjectECommerce.Models.DB.Cart>
+﻿@model ProjectECommerce.Models.CartViewModel
+@{ var selectedAddressDetails = Model.Address.Where(x => x.Id.ToString() == Model.SelectedAddress).FirstOrDefault(); }
 <link rel="stylesheet" href="~/css/bootstrap.css">
 <link rel="stylesheet" href="~/css/reset.css">
 <link rel="stylesheet" href="~/css/style.css">
@@ -7,90 +8,133 @@
 
 <div class="shopping-cart section">
     <div class="container">
-        @if (@Model.Count() > 0)
+        @if (@Model.Cart.Count() > 0)
         {
-    <div class="row">
-        <div class="col-12">
-            <!-- Shopping Summery -->
-            <table class="table shopping-summery">
-                <thead>
-                    <tr class="main-hading">
-                        <th>PRODUCT</th>
-                        <th>NAME</th>
-                        <th class="text-center">PRICE</th>
-                        <th class="text-center">QUANTITY</th>
-                        <th class="text-center">TOTAL</th>
-                        <th class="text-center"><i class="fas fa-trash remove-icon"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var cartList in Model)
-                    {
-    <tr>
-        <td class="image" data-title="No"><img src="@cartList.Product.ImagePath" alt="#"></td>
-        <td class="product-des" data-title="Description">
-            <p class="product-name"><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@cartList.Product.Id">@cartList.Product.Name</a></p>
-            <p class="product-des">@cartList.Product.Description</p>
-        </td>
-        <td class="price" data-title="Price"><span>$@cartList.Product.Price </span></td>
-        <td class="qty" data-title="Qty">
-            <!-- Input Order -->
-            <div class="input-group">
-                <div class="button minus">
-                    <a asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="-1" class="btn btn-primary btn-number" data-type="minus">
-                        <i class="fas fa-minus"></i>
-                    </a>
-                </div>
-                <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="@cartList.Quantity">
-                <div class="button plus">
-                    <a class="btn btn-primary btn-number" data-type="plus" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="1">
-                        <i class="fas fa-plus"></i>
-                    </a>
-                </div>
+<div class="row">
+    <div class="col-12">
+        <!-- Shopping Summery -->
+        <table class="table shopping-summery">
+            <thead>
+                <tr class="main-hading">
+                    <th>PRODUCT</th>
+                    <th>NAME</th>
+                    <th class="text-center">PRICE</th>
+                    <th class="text-center">QUANTITY</th>
+                    <th class="text-center">TOTAL</th>
+                    <th class="text-center"><i class="fas fa-trash remove-icon"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cartList in Model.Cart)
+                {
+<tr>
+    <td class="image" data-title="No"><img src="@cartList.Product.ImagePath" alt="#"></td>
+    <td class="product-des" data-title="Description">
+        <p class="product-name"><a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@cartList.Product.Id">@cartList.Product.Name</a></p>
+        <p class="product-des">@cartList.Product.Description</p>
+    </td>
+    <td class="price" data-title="Price"><span>$@cartList.Product.Price </span></td>
+    <td class="qty" data-title="Qty">
+        <!-- Input Order -->
+        <div class="input-group">
+            <div class="button minus">
+                <a asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="-1" class="btn btn-primary btn-number" data-type="minus">
+                    <i class="fas fa-minus"></i>
+                </a>
             </div>
-            <!--/ End Input Order -->
-        </td>
-        <td class="total-amount" data-title="Total"><span>$@(Convert.ToInt32(cartList.Product.Price)*@Convert.ToInt32(cartList.Quantity))</span></td>
-        <td class="action" data-title="Remove"><a asp-action="DeleteItemFromCart" asp-route-id="@cartList.Id"><i class="fas fa-trash"></i></a></td>
-    </tr>
-}
-                </tbody>
-            </table>
-            <!--/ End Shopping Summery -->
+            <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="@cartList.Quantity">
+            <div class="button plus">
+                <a class="btn btn-primary btn-number" data-type="plus" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@cartList.Product.Id" asp-route-quantity="1">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
         </div>
+        <!--/ End Input Order -->
+    </td>
+    <td class="total-amount" data-title="Total"><span>$@(Convert.ToInt32(cartList.Product.Price)*@Convert.ToInt32(cartList.Quantity))</span></td>
+    <td class="action" data-title="Remove"><a asp-action="DeleteItemFromCart" asp-route-id="@cartList.Id"><i class="fas fa-trash"></i></a></td>
+</tr>
+}
+            </tbody>
+        </table>
+        <!--/ End Shopping Summery -->
     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Total Amount -->
-                            <div class="total-amount">
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-5 col-12">
-                                    </div>
-                                    <div class="col-lg-4 col-md-7 col-12">
-                                        <div class="right">
-                                            <ul>
-                                                <li>Cart Subtotal<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
-                                                <li>Shipping<span>Free</span></li>
-                                                <li class="last">Total Pay<span>$@Model.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
-                                            </ul>
-                                            <div class="button5">
-                                                <a asp-action="CreateOrder" class="btn">Checkout</a>
-                                            </div>
+</div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Total Amount -->
+                        <div class="total-amount">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-5 col-12">
+                                    <select class="form-control" onchange="doIt(this,'@Url.Action("Index")')">
+                                        @foreach (var addresses in Model.Address)
+                                        {
+                                            if (addresses.Id.ToString() == Model.SelectedAddress)
+                                            {
+                        <option selected value="@addresses.Id">@addresses.Name</option> }
+                                            else
+                                            {
+                        <option value="@addresses.Id">@addresses.Name</option>}
+                                        }
+                                    </select>
+                                    <br />
+                                    @if (selectedAddressDetails != null)
+                                    {
+                    <div>
+                        <b>Delivery Address</b>  <br />
+                        <b>@selectedAddressDetails.Name</b>
+                        <br />
+                        @selectedAddressDetails.AddressLine1 @selectedAddressDetails.AddressLine2 <br />
+                        @selectedAddressDetails.Area @selectedAddressDetails.City @selectedAddressDetails.Country @selectedAddressDetails.Pincode <br />
+                        <b>Phone number</b> @selectedAddressDetails.Mobile <br />
+                        <b>Email Id</b> @selectedAddressDetails.Email <br />
+                    </div> }
+                else
+                {
+<span>No address found please create address first then procees. <br /> Click <a asp-controller="Address" asp-action="Create" class="btnAddress">here</a>  to create new address.</span>}
+
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-12">
+                                    <div class="right">
+                                        <ul>
+                                            <li>Cart Subtotal<span>$@Model.Cart.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
+                                            <li>Shipping<span>Free</span></li>
+                                            <li class="last">Total Pay<span>$@Model.Cart.Sum(x => Convert.ToInt32(x.Product.Price) * Convert.ToInt32(x.Quantity))</span></li>
+                                        </ul>
+                                        <div class="button5">
+                                            <a asp-action="CreateOrder" asp-route-addressId="@Model.SelectedAddress" class="btn @(Model.SelectedAddress!=null?"":"disabled")">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--/ End Total Amount -->
                         </div>
-                    </div>}
-                else
-                {
-                    <div class="row" style="margin-left:20px">
-                        <h3>No item found in your cart.</h3>
+                        <!--/ End Total Amount -->
                     </div>
-                }
+                </div>}
+            else
+            {
+<div class="row" style="margin-left:20px">
+    <h3>No item found in your cart.</h3>
+</div>}
 
     </div>
 </div>
 
+<script>
+
+    function doIt(item, baseUrl) {
+        window.location.href = baseUrl + '?selectedAddressId=' + item.value;
+    }
+</script>
+<style type="text/css">
+    a.disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    .btnAddress {
+        text-decoration: underline;
+        color: blue !important;
+    }
+</style>
 

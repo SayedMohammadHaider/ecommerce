@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectECommerce.Models;
 using ProjectECommerce.Models.DB;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ namespace ProjectECommerce.Controllers
     public class AddressController : Controller
     {
         private readonly ECommerceContext _context;
+        private Address _address = null;
 
         public AddressController(ECommerceContext context)
         {
             _context = context;
+            _address = new Address();
         }
         public IActionResult Index(string searching)
         {
@@ -50,10 +53,20 @@ namespace ProjectECommerce.Controllers
         // Post - Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Address address)
+        public IActionResult Create(AddressViewModel address)
         {
-            address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
-            _context.Addresses.Add(address);
+            _address.AddressLine1 = address.AddressLine1;
+            _address.AddressLine2 = address.AddressLine2;
+            _address.City = address.City;
+            _address.Area = address.Area;
+            _address.Pincode = address.Pincode;
+            _address.Country = address.Country;
+            _address.Landmark = address.Landmark;
+            _address.Name = address.Name;
+            _address.Email = address.Email;
+            _address.Mobile = address.Mobile;
+            _address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
+            _context.Addresses.Add(_address);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -67,20 +80,43 @@ namespace ProjectECommerce.Controllers
                 return NotFound();
             }
             var address = _context.Addresses.Find(id);
+            AddressViewModel viewModel = new AddressViewModel();
+            viewModel.Id = address.Id;
+            viewModel.AddressLine1 = address.AddressLine1;
+            viewModel.AddressLine2 = address.AddressLine2;
+            viewModel.City = address.City;
+            viewModel.Area = address.Area;
+            viewModel.Pincode = address.Pincode;
+            viewModel.Country = address.Country;
+            viewModel.Landmark = address.Landmark;
+            viewModel.Name = address.Name;
+            viewModel.Email = address.Email;
+            viewModel.Mobile = address.Mobile;
             if (address == null)
             {
                 return NotFound();
             }
-            return View(address);
+            return View(viewModel);
         }
 
         // Post - Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Address address)
+        public IActionResult Edit(AddressViewModel address)
         {
-            address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
-            _context.Addresses.Update(address);
+            _address.Id = address.Id;
+            _address.AddressLine1 = address.AddressLine1;
+            _address.AddressLine2 = address.AddressLine2;
+            _address.City = address.City;
+            _address.Area = address.Area;
+            _address.Pincode = address.Pincode;
+            _address.Country = address.Country;
+            _address.Landmark = address.Landmark;
+            _address.Name = address.Name;
+            _address.Email = address.Email;
+            _address.Mobile = address.Mobile;
+            _address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
+            _context.Addresses.Update(_address);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
