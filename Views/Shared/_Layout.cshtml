@@ -6,47 +6,119 @@
     <title>@ViewData["Title"] - E-Commerce</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/login.css" />
+    @*<link rel="stylesheet" href="~/css/login.css" />*@
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/reset.css" rel="stylesheet" />
+    @*<link href="~/css/themify-icons.css" rel="stylesheet" />*@
+
+    <link href="~/style.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3  navbar navbar-inverse navbar-fixed-top">
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3  navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" asp-append-version="true"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                <div class="dropdown-menu">
+                                    @await Component.InvokeAsync("Category")
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="UserProfile" asp-action="UserProfile">UserProfile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>*@
+
+
+
+
+
+
+    <header class="header shop">
+        <!-- Topbar -->
+        @*<div class="topbar">
+            </div>*@
+        <!-- End Topbar -->
+        <!-- Header Inner -->
+        <div class="header-inner">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" asp-append-version="true"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                            <div class="dropdown-menu">
-                                @await Component.InvokeAsync("Category")
+                <div class="cat-nav-head">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            @*<a href="index.html"><img src="~/images/logo.png" alt="logo"></a>*@
+                        </div>
+                        <div class="col-lg-9 col-12">
+                            <div class="menu-area">
+                                <!-- Main Menu -->
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="navbar-collapse">
+                                        <div class="nav-inner">
+                                            <ul class="nav main-menu menu navbar-nav">
+                                                <li class="active"> <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                                <li> <a class="nav-link " asp-area="" asp-controller="Product" asp-action="Index">Product</a></li>
+                                                <li> <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
+                                                <li>
+                                                    <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category<i class="ti-angle-down"></i></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="#">Shop Men's</a></li>
+                                                        <li><a href="#">Shop Women's</a></li>
+                                                        <li><a href="#">Shop Kid's</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
+
+                                                </li>
+                                                <li> <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
+                                                <li>
+                                                    <a class="nav-link " asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
+
+                                                </li>
+
+                                                <li> <a class="nav-link " asp-area="" asp-controller="UserProfile" asp-action="UserProfile">UserProfile</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <!--/ End Main Menu -->
+                                <!--</div>
+                                </div>-->
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
+        <!--/ End Header Inner -->
     </header>
 
     <div class="container">
