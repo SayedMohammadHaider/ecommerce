@@ -6,62 +6,56 @@
     <title>@ViewData["Title"] - E-Commerce</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/login.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3  navbar navbar-inverse navbar-fixed-top">
+    <header class="header shop">
+        <div class="header-inner" style="max-height:60px !important;">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" asp-append-version="true"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="cat-nav-head">
+                    <div class="row">
+                        <div class="col-lg-3" style="padding-top:20px">
+                            <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo"></a>
+                        </div>
+                        <div class="col-lg-9 col-12">
+                            <div class="menu-area">
+                                <!-- Main Menu -->
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="navbar-collapse">
+                                        <div class="nav-inner">
+                                            @await Component.InvokeAsync("Category")
 
-                    @await Component.InvokeAsync("Category")
-                    @*<ul class="navbar-nav flex-grow-1">
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                <div class="dropdown-menu">
+                                        </div>
+                                    </div>
+                                </nav>
+                                <!--/ End Main Menu -->
+                                <!--</div>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" asp-append-version="true"></a>*@
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
-            </li>
-        </ul>*@
                 </div>
             </div>
-        </nav>
+            <!--/ End Header Inner -->
+        </div>
     </header>
 
-    <div class="container">
+    <div class="container" style="padding-top:1px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    @*<footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="position:fixed;z-index:999">
             <div class="container">
                 &copy; 2021 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
             </div>
-        </footer>*@
+        </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -70,7 +64,8 @@
 </html>
 
 
-
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/responsive.css">
 
 
 
