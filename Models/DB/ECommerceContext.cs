@@ -20,6 +20,7 @@ namespace ProjectECommerce.Models.DB
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -90,15 +91,29 @@ namespace ProjectECommerce.Models.DB
                     .HasForeignKey(d => d.AddressId)
                     .HasConstraintName("FK_Orders_Address");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK_Orders_Product");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_Orders_User");
+            });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.Property(e => e.Price).HasMaxLength(50);
+
+                entity.Property(e => e.Quantity)
+                    .HasMaxLength(10)
+                    .IsFixedLength(true);
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK_OrderDetails_Orders");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_OrderDetails_Product");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -115,6 +130,12 @@ namespace ProjectECommerce.Models.DB
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
+
+                entity.Property(e => e.DateOfBirth).HasColumnType("date");
+
+                entity.Property(e => e.EmailId).HasMaxLength(50);
+
+                entity.Property(e => e.MobileNumber).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

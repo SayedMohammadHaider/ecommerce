@@ -17,14 +17,16 @@ namespace ProjectECommerce.Controllers
         }
         public IActionResult Index(string searching)
         {
+            Int32 userId = Convert.ToInt32(Request.Cookies["UserId"]);
+
             IEnumerable<Address> addressList = null;//_context.Addresses.ToList();
             if (searching != null)
             {
-                addressList = _context.Addresses.Where(x => x.Name.Contains(searching)).ToList();
+                addressList = _context.Addresses.Where(x => x.Name.Contains(searching) && x.UserId == userId).ToList();
             }
             else
             {
-                addressList = _context.Addresses;
+                addressList = _context.Addresses.Where(x => x.UserId == userId);
             }
             return View(addressList);
         }
@@ -50,6 +52,7 @@ namespace ProjectECommerce.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Address address)
         {
+            address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
             _context.Addresses.Add(address);
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -76,6 +79,7 @@ namespace ProjectECommerce.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Address address)
         {
+            address.UserId = Convert.ToInt32(Request.Cookies["UserId"]);
             _context.Addresses.Update(address);
             _context.SaveChanges();
             return RedirectToAction("Index");

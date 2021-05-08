@@ -10,7 +10,7 @@ namespace ProjectECommerce.Models.DB
         public Product()
         {
             Carts = new HashSet<Cart>();
-            Orders = new HashSet<Order>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public long Id { get; set; }
@@ -21,6 +21,6 @@ namespace ProjectECommerce.Models.DB
         public string ImagePath { get; set; }
 
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

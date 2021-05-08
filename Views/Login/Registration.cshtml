@@ -1,4 +1,5 @@
-﻿<meta charset="utf-8">
+﻿@model ProjectECommerce.Models.RegisterViewModel
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -6,9 +7,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="~/cssL/style.css">
-
-
-
 
 <div class="container">
     <div class="row justify-content-center">
@@ -25,53 +23,71 @@
                         </p>
                     </div>
                 </div>
-                <form action="#" class="login-form">
+                <form asp-action="Registration" class="login-form">
                     <div class="form-group">
                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                        <input type="text" class="form-control rounded-left" placeholder="Username" required>
+                        <input type="text" asp-for="@Model.Username" class="form-control rounded-left" placeholder="Username">
+                        <span asp-validation-for="@Model.Username" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                        <input type="password" class="form-control rounded-left" placeholder="Password" required>
+                        <input type="password" asp-for="@Model.Password" class="form-control rounded-left" placeholder="Password">
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                        <input type="password" class="form-control rounded-left" placeholder="Confirm Password" required>
+                        <input type="password" asp-for="@Model.ConfirmPassword" class="form-control rounded-left" placeholder="Confirm Password">
+                        <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                        <input type="text" class="form-control rounded-left" placeholder="Enter Name" required>
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                        <input type="text" asp-for="@Model.Name" class="form-control rounded-left" placeholder="Enter Name">
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-mobile"></span></div>
+                        <input type="text" asp-for="@Model.MobileNumber" class="form-control rounded-left" placeholder="Enter Mobile Number">
+                        <span asp-validation-for="@Model.MobileNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-calendar"></span></div>
+                        <input type="text" onfocus="(this.type='date')" asp-for="@Model.DateOfBirth" class="form-control rounded-left" placeholder="Enter Date Of Birth">
+                        <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
                     </div>
                     <div class="form-group d-flex align-items-center">
-                        @*<div class="w-100">
-                <label class="checkbox-wrap checkbox-primary mb-0">
-                    Save Password
-                    <input type="checkbox" checked>
-                    <span class="checkmark"></span>
-                </label>
-            </div>*@
                         <div class="w-100 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary rounded submit">Sign Up</button>
+                            <input type="submit" class="btn btn-primary rounded submit" value="Sign Up" />
                         </div>
                     </div>
                     <div class="form-group mt-4">
                         <div class="w-100 text-center">
                             <p class="mb-1">
-                              If You have account?   <a asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                                If You have account?   <a asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                             </p>
-                            <p><a href="#">Forgot Password</a></p>
+
                         </div>
                     </div>
+                    <span style="color:red">
+                        @if (@Model != null)
+                        {@Model.ErrorMessage}
+                    </span>
                 </form>
-            </div>
         </div>
     </div>
+</div>
 </div>
 
 <script src="~/jsL/jquery.min.js"></script>
 <script src="~/jsL/popper.js"></script>
 <script src="~/jsL/bootstrap.min.js"></script>
 <script src="~/jsL/main.js"></script>
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
 
 
 

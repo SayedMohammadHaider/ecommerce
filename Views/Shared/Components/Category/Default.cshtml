@@ -1,8 +1,49 @@
-﻿@model IEnumerable<ProjectECommerce.Models.DB.Product>
+﻿@model ProjectECommerce.Models.LoginUserViewModel
 
-<ul class="">
-    @foreach (var category in Model)
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+        <div class="dropdown-menu">
+            <ul class="">
+                @foreach (var category in Model.Products)
+                {
+                    <li><a asp-controller="Product" asp-action="Index" asp-route-name="@category.Category">@category.Category</a></li>
+                }
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+    </li>
+    @if (Model.UserId != null)
     {
-        <li><a asp-controller="Product" asp-action="Index" asp-route-name="@category.Category">@category.Category</a></li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Your Orders</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="UserProfile" asp-action="Index">User Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
+        </li>
     }
 </ul>
+
