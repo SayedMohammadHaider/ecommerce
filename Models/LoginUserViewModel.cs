@@ -10,5 +10,6 @@ namespace ProjectECommerce.Models
     {
         public IEnumerable<Product> Products { get; set; }
         public string UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

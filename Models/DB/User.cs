@@ -22,6 +22,7 @@ namespace ProjectECommerce.Models.DB
         public DateTime? DateOfBirth { get; set; }
         public string EmailId { get; set; }
         public string Designation { get; set; }
+        public bool? IsAdmin { get; set; }
 
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }

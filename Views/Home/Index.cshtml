@@ -2,7 +2,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="container">
+<div class="container" style="padding:0px !important">
     <div class="row">
         <div id="imageCarousel" class="carousel slide" data-interval="2000"
              data-ride="carousel" data-pause="hover" data-wrap="true">
@@ -112,28 +112,28 @@
 
                                             @foreach (var productDetails in Model)
                                             {
-                                                <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                                    <div class="single-product">
-                                                        <div class="product-img" style="min-height:300px;min-width:250px;max-height:300px;max-width:250px">
-                                                            <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">
-                                                                <img class="default-img" src="@productDetails.ImagePath" alt="#">
-                                                                <img class="hover-img" src="@productDetails.ImagePath" alt="#">
-                                                            </a>
-                                                            <div class="button-head">
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                <div class="single-product">
+                                                    <div class="product-img" style="min-height:300px;min-width:250px;max-height:300px;max-width:250px">
+                                                        <a asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">
+                                                            <img class="default-img" src="@productDetails.ImagePath" alt="#">
+                                                            <img class="hover-img" src="@productDetails.ImagePath" alt="#">
+                                                        </a>
+                                                        <div class="button-head">
 
-                                                                <div class="product-action-2">
-                                                                    <a title="Add to cart" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@productDetails.Id" asp-route-quantity="1">Add to cart</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-content">
-                                                            <h3><a style="color:black" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">@productDetails.Name</a></h3>
-                                                            <div class="product-price">
-                                                                <span style="color:black">@productDetails.Price ر.ع.</span>
+                                                            <div class="product-action-2">
+                                                                <a title="Add to cart" asp-controller="Cart" asp-action="ManageQuantity" asp-route-id="@productDetails.Id" asp-route-quantity="1">Add to cart</a>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="product-content">
+                                                        <h3><a style="color:black" asp-controller="Product" asp-action="ProductDetails" asp-route-id="@productDetails.Id">@productDetails.Name</a></h3>
+                                                        <div class="product-price">
+                                                            <span style="color:black">@productDetails.Price ر.ع.</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </div>
                                             }
                                         </div>
                                     </div>
@@ -266,10 +266,10 @@
 <link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="~/css/responsive.css">
 
-<style type="text/css">
-    .container {
+<style>
+    .mainClass {
         padding: 0px !important;
-        min-width: 98%;
     }
 </style>
+
 

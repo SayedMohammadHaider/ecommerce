@@ -30,44 +30,39 @@
 
     @if (Model!= null)
     {
-        <table class="table table-bordered table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Order Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Full Address</th>
-                    <th>Pin Code</th>
-                    <th>Total Quantity</th>
-                    <th>Total Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var orders in Model)
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Full Address</th>
+                <th>Pin Code</th>
+                <th>Total Quantity</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orders in Model)
                 {
-                    <tr>
-                        <td width="20%"><a asp-action="OrderDetails" asp-route-orderId="@orders.Id"> @orders.Id</a></td>
-                        <td width="20%">@orders.Address.Name</td>
-                        <td width="20%"> @orders.Address.Email</td>
-                        <td width="20%">@orders.Address.AddressLine1 @orders.Address.AddressLine2 @orders.Address.Area @orders.Address.City  @orders.Address.Country</td>
-                        <td width="20%">@orders.Address.Pincode</td>
+            <tr>
+                <td width="5%"><a asp-action="OrderDetails" asp-route-orderId="@orders.Id" style="color:blue"> @orders.Id</a></td>
+                <td width="8%">@orders.Address.Name</td>
+                <td width="20%"> @orders.Address.Email</td>
+                <td width="35%">@orders.Address.AddressLine1 @orders.Address.AddressLine2 @orders.Address.Area @orders.Address.City  @orders.Address.Country</td>
+                <td width="10%">@orders.Address.Pincode</td>
 
-                        <td width="20%">@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Quantity))</td>
-                        <td>@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Price) * Convert.ToInt32(x.Quantity))</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                    <tr>
-                    </tr>
-
+                <td width="10%">@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Quantity))</td>
+                <td width="20%">@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Price) * Convert.ToInt32(x.Quantity))</td>
+            </tr>
                 }
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
     }
     else
     {
-        <h2>No Order Found</h2>
+    <h2>No Order Found</h2>
     }
 
 </div>

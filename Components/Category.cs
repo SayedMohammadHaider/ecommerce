@@ -27,8 +27,17 @@ namespace ProjectECommerce.Components
                    .GroupBy(a => a.Category)
                    .Select(g => g.First())
                    .ToList();
+            User currentUser = _context.Users.Where(x => x.Id == Convert.ToInt32(userId)).FirstOrDefault();
             viewModel.Products = products;
             viewModel.UserId = userId;
+            if (currentUser != null && currentUser.IsAdmin.HasValue)
+            {
+                viewModel.IsAdmin = currentUser.IsAdmin.Value;
+            }
+            else
+            {
+                viewModel.IsAdmin = false;
+            }
             return View(viewModel);
         }
     }

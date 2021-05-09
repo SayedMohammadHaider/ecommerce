@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProjectECommerce.Models.DB.User>
+<div class="well" style="background-color: #F7941D; border-color: #F7941D;border-radius:4px;padding:19px 19px 2px 19px">
+    <div class="row">
+        <div class="col-6">
+            <p style="color: black !important;font-size:20px">All Users</p>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary " style="color:white;">
+                <i class="fas fa-plus"></i> &nbsp; Add New User
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <br />
+
+    <br /><br />
+    <form method="get">
+        <div class="row">
+            <div class="col-4 input-group">
+                <input class="form-control" name="searching" placeholder="Search User By Name" />
+                <div class="input-group-append">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Get All Users" class="btn btn-info" style="background-color: #F7941D !important; color:white; border-color:#F7941D" />
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Name</th>
+                    <th>Mobile No</th>
+                    <th>Date Of Birth</th>
+                    <th>Email Id</th>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var userDetails in Model)
+                {
+                    <tr>
+                        <td width="15%">@userDetails.Username</td>
+                        <td width="10%">@userDetails.Password</td>
+                        <td width="10%">@userDetails.Name</td>
+                        <td width="10%">@userDetails.MobileNumber</td>
+                        <td width="20%">@userDetails.DateOfBirth</td>
+                        <td width="20%">@userDetails.EmailId</td>
+                        <td width="20%">@userDetails.Designation</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-route-Id="@userDetails.Id" asp-action="Edit" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary mx-1">Edit </a>
+                                <a asp-route-Id="@userDetails.Id" asp-action="Delete" data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger mx-1">Delete </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <h2>No User Found</h2>
+    }
+
+</div>
+

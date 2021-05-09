@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProjectECommerce.Models.DB.Order>
+<div class="well" style="background-color: #F7941D; border-color: #F7941D;border-radius:4px;padding:19px 19px 2px 19px">
+    <div class="row">
+        <div class="col-6">
+            <p style="color: black !important;font-size:20px">All Orders</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <br />
+
+    <br /><br />
+    <form method="get">
+        <div class="row">
+            <div class="col-4 input-group">
+                <input class="form-control" name="searching" placeholder="Search Order By Id" />
+                <div class="input-group-append">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Get All Orders" class="btn btn-info" style="background-color: #F7941D !important; color:white; border-color:#F7941D" />
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Full Address</th>
+                    <th>Pin Code</th>
+                    <th>Total Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var orders in Model)
+                {
+                    <tr>
+                        <td width="5%"><a asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@orders.Id" style="color:blue"> @orders.Id</a></td>
+                        <td width="8%">@orders.Address.Name</td>
+                        <td width="20%"> @orders.Address.Email</td>
+                        <td width="35%">@orders.Address.AddressLine1 @orders.Address.AddressLine2 @orders.Address.Area @orders.Address.City  @orders.Address.Country</td>
+                        <td width="10%">@orders.Address.Pincode</td>
+
+                        <td width="10%">@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Quantity))</td>
+                        <td width="20%">@orders.OrderDetails.Sum(x => Convert.ToInt32(x.Price) * Convert.ToInt32(x.Quantity))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <h2>No Order Found</h2>
+    }
+
+</div>

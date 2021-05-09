@@ -13,10 +13,10 @@
             <div class="container">
                 <div class="cat-nav-head">
                     <div class="row">
-                        <div class="col-lg-3" style="padding-top:20px">
+                        <div class="col-lg-1" style="padding-top:20px">
                             <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo"></a>
                         </div>
-                        <div class="col-lg-9 col-12">
+                        <div class="col-lg-11 col-12">
                             <div class="menu-area">
                                 <!-- Main Menu -->
                                 <nav class="navbar navbar-expand-lg">
@@ -45,17 +45,17 @@
         </div>
     </header>
 
-    <div class="container" style="padding-top:1px">
-        <main role="main" class="pb-3">
+    <div class="container" style="padding-top:1px;">
+        <main role="main" class="pb-3 mainClass" style="padding:0px 10%;">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted" style="position:fixed;z-index:999">
-            <div class="container">
-                &copy; 2021 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
-            </div>
-        </footer>
+    <footer class="border-top footer text-muted" style="z-index:999;position:relative;bottom:0">
+        <div class="container">
+            &copy; 2021 - E-Commerce - <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -63,10 +63,12 @@
 </body>
 </html>
 
-
 <link rel="stylesheet" href="~/css/style.css">
 <link rel="stylesheet" href="~/css/responsive.css">
 
-
-
-
+<style type="text/css">
+    .container {
+        padding: 0px;
+        min-width: 98%;
+    }
+</style>

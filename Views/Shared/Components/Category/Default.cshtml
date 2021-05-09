@@ -7,36 +7,47 @@
         <ul class="dropdown">
             @foreach (var category in Model.Products)
             {
-                <li><a asp-controller="Product" asp-action="Index" asp-route-name="@category.Category">@category.Category</a></li>
+            <li><a asp-controller="Product" asp-action="Index" asp-route-name="@category.Category">@category.Category</a></li>
             }
         </ul>
     </li>
     @if (Model.UserId != null)
     {
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Order" asp-action="Index">Your Orders</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="Index">User Profile</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-        </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Address" asp-action="Index">Address</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Order" asp-action="Index">Your Orders</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="UserProfile" asp-action="Index">User Profile</a>
+    </li>
+    @if(Model.IsAdmin){
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="UserList" asp-action="Index">User List</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="ProductList" asp-action="Index">Product List</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="OrderList" asp-action="Index">Order List</a>
+    </li>
+    }
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+    </li>
     }
     else
     {
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-        </li>
-        <li>
-            <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
-        </li>
-    }   
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+    </li>
+    <li>
+        <a class="nav-link" asp-area="" asp-controller="Login" asp-action="Registration">Registration</a>
+    </li>
+    }
 </ul>
 
